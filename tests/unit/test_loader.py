@@ -3,7 +3,6 @@ import json
 import pytest
 
 from cfnsane import loader
-from cfnsane.s3 import Bucket
 
 
 def test_read(case):
@@ -11,17 +10,6 @@ def test_read(case):
         loaded = loader.Load(case["template"])
         to_dict = json.loads(json.dumps(loaded.data))
         assert to_dict == expect['load']
-
-def test_resource_init():
-    assert Bucket.sane_defaults() == {
-        "PublicAccessBlockConfiguration": {
-            "BlockPublicAcls": True,
-            "BlockPublicPolicy": True,
-            "IgnorePublicAcls": True,
-            "RestrictPublicBuckets": True,
-        }
-    }
-
 
 def test_convert(case):
     with case["expect"] as expect:

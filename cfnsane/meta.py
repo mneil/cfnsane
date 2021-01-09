@@ -33,3 +33,6 @@ class Resource:
             if isinstance(value, dict) and member not in Resource.ignore_attributes:
                 members[member] = value
         return members
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(self, *args, **kwargs)
