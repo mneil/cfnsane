@@ -3,6 +3,8 @@ from contextlib import nullcontext
 from yaml import load
 
 from cfnsane.resources import Bucket
+from cfnsane.yaml import CfnYamlLoader
+
 
 class SelfRef(dict):
    def __getitem__(self, item):
@@ -78,7 +80,10 @@ def templates():
                 "types": {
                     "MyBucket": Bucket,
                 },
-                "template": load(open("./tests/fixtures/templates/out/bucket.yml", "r"))
+                "template": load(
+                    open("./tests/fixtures/templates/out/bucket.yml", "r"),
+                    Loader=CfnYamlLoader
+                )
             }),
         },
     }

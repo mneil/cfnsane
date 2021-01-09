@@ -2,8 +2,8 @@
 Load cloudformation into Troposphere and synthesize into
 a template
 """
-from cfnsane.meta import Resource
+import os
 
-__version__ = "0.1.0"
+from cfnsane.meta import Resource
 
 NAMESPACE = "AWS"
