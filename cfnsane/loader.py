@@ -2,6 +2,7 @@
 Load a dictionary, string, bytes, bytearray, or readable stream into
 a python dictionary
 """
+import copy
 import json
 import logging
 from typing import Any, Dict, Union, IO, Set
@@ -109,8 +110,11 @@ class Load(TemplateGenerator):
         """
         for logical_id, definition in self.data.items():
             resource_type = self._get_resource_type_cls(logical_id, definition)
+            resource_definition = copy.deepcopy(definition)
+            if hasattr(resource_type, "sane_defaults"):
+                resource_definition["Properties"].update(resource_type.sane_defaults())
             self.resources[logical_id] = self._convert_definition(
-                definition, logical_id, resource_type
+                resource_definition, logical_id, resource_type
             )
 
     def render(self) -> Template:
