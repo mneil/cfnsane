@@ -5,7 +5,7 @@ a python dictionary
 import copy
 import json
 import logging
-from typing import Any, Dict, Union, IO, Set
+from typing import Dict, Union, IO, Set
 
 from yaml import load, YAMLError
 from troposphere import Template
@@ -23,6 +23,7 @@ class LoadError(Exception):
     dictionary, string, bytes, bytearray, or readable stream into
     a python dictionary
     """
+
 
 class Load(TemplateGenerator):
     """
@@ -112,7 +113,7 @@ class Load(TemplateGenerator):
             if hasattr(resource_type, "sane_defaults"):
                 resource_definition["Properties"] = {
                     **resource_type.sane_defaults(),
-                    **resource_definition["Properties"]
+                    **resource_definition["Properties"],
                 }
             self.resources[logical_id] = self._convert_definition(
                 resource_definition, logical_id, resource_type

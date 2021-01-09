@@ -1,6 +1,10 @@
+"""
+S3 Resources
+"""
 from troposphere.s3 import Bucket as TSBucket
 
 from cfnsane.meta import Resource
+
 
 class Bucket(TSBucket, Resource):
 

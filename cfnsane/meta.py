@@ -7,11 +7,13 @@ and class we should use to generate that type
 """
 import inspect
 
-class Resource():
+
+class Resource:
     """
     Base class for all resource definitions that
     will overload troposphere objects
     """
+
     ignore_attributes = ("props", "__annotations__")
 
     @classmethod
