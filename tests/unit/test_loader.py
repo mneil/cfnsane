@@ -3,7 +3,7 @@ import json
 import pytest
 
 from cfnsane import loader
-from cfnsane.resources.bucket import Bucket
+from cfnsane.s3 import Bucket
 
 
 def test_read(case):

@@ -1,10 +1,10 @@
 from troposphere.s3 import Bucket as TSBucket
 
-from cfnsane import NAMESPACE, Resource
+from cfnsane.meta import Resource
 
 class Bucket(TSBucket, Resource):
 
-    resource_type: str = f"{NAMESPACE}::S3::Bucket"
+    resource_type: str = "AWS::S3::Bucket"
 
     PublicAccessBlockConfiguration = {
         "BlockPublicAcls": True,

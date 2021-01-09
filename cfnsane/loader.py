@@ -11,8 +11,6 @@ from yaml import load, YAMLError
 from troposphere import Template
 from troposphere.template_generator import TemplateGenerator
 from cfnsane.meta import Resource
-import cfnsane.resources
-
 from cfnsane.yaml import CfnYamlLoader
 
 Logger = logging.getLogger("cfnsane")

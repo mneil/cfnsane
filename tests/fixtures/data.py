@@ -2,9 +2,11 @@ from contextlib import nullcontext
 
 from yaml import load
 
-from cfnsane.resources import Bucket
+# from cfnsane.s3 import Bucket
+import cfnsane.s3 as s3
 from cfnsane.yaml import CfnYamlLoader
 
+Bucket = s3.Bucket
 
 class SelfRef(dict):
    def __getitem__(self, item):
