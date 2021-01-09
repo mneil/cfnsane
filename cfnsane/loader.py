@@ -112,7 +112,10 @@ class Load(TemplateGenerator):
             resource_type = self._get_resource_type_cls(logical_id, definition)
             resource_definition = copy.deepcopy(definition)
             if hasattr(resource_type, "sane_defaults"):
-                resource_definition["Properties"].update(resource_type.sane_defaults())
+                resource_definition["Properties"] = {
+                    **resource_type.sane_defaults(),
+                    **resource_definition["Properties"]
+                }
             self.resources[logical_id] = self._convert_definition(
                 resource_definition, logical_id, resource_type
             )
