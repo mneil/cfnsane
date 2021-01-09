@@ -7,14 +7,6 @@ and class we should use to generate that type
 """
 import inspect
 
-
-# class MetaResource(type):
-
-#     def __new__(cls, name, bases, dct):
-#         print(inspect.getmembers(cls))
-#         x = super().__new__(cls, name, bases, dct)
-#         return x
-
 class Resource():
     """
     Base class for all resource definitions that
@@ -24,11 +16,16 @@ class Resource():
 
     @classmethod
     def get_members(cls):
+        """get a dict of all members of a subclass"""
         members = inspect.getmembers(cls)
         return members
 
     @classmethod
     def sane_defaults(cls):
+        """
+        Find class members that are configuration objects that
+        will need to be converted to Troposphere
+        """
         members = {}
         for member, value in cls.get_members():
             if isinstance(value, dict) and member not in Resource.ignore_attributes:
