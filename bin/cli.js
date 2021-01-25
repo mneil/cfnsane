@@ -22,7 +22,7 @@ const version = require('aws-cdk/lib/version');
  */
 async function synthesize() {
     const argv = {
-        _: ["synthesize"],
+        _: ['synthesize'],
         v: 1,
         lookups: true,
         'ignore-errors': false,
@@ -165,9 +165,9 @@ async function synthesize() {
                 // Use new bootstrapping if it's requested via environment variable, or if
                 // new style stack synthesis has been configured in `cdk.json`.
                 //
-                // In code it's optimistically called "default" bootstrapping but that is in
+                // In code it's optimistically called 'default' bootstrapping but that is in
                 // anticipation of flipping the switch, in user messaging we still call it
-                // "new" bootstrapping.
+                // 'new' bootstrapping.
                 let source = { source: 'legacy' };
                 const newStyleStackSynthesis = isFeatureEnabled(configuration, cxapi.NEW_STYLE_STACK_SYNTHESIS_CONTEXT);
                 if (args.template) {
