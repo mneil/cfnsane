@@ -48,7 +48,7 @@ Application teams want to deploy a bucket into the cloud as fast as possible. In
 Install CFNSane using pip from PyPi
 
 ```bash
-pip install cfnsane
+npm install -g cfnsane
 ```
 
 Process an existing template (YAML or JSON)
@@ -61,25 +61,28 @@ See available commands by running `cfnsane --help` or simply `cfnsane`.
 
 ### Library
 
-You may wish to use CFNSane to create your own sane defaults for AWS resources. Writing new resources is simple. For example you could make your own s3 Bucket resource to block public access and set versioning to Enabled.
+You may wish to use Cfnsane to create your own sane defaults for AWS resources. Cfnsane uses the AWS CDK under the hook. You can write AWS CDK like normal and attach cfnsane to your stack or individual contructs to enforce sane defaults.
 
-```python
-from troposphere.s3 import Bucket
-from cfnsane import Resource
+```javascript
+const cfnsane = require('cfnsane');
+const cdk = require('@aws-cdk/core');
+const s3 = require('@aws-cdk/aws-s3');
 
-
-class MyBucket(Bucket, Resource):
-
-    PublicAccessBlockConfiguration = {
-        "BlockPublicAcls": True,
-        "BlockPublicPolicy": True,
-        "IgnorePublicAcls": True,
-        "RestrictPublicBuckets": True,
+/**
+ * Stack ingests a template from disk anc creates
+ * a CDK Stack
+ */
+class Stack extends cdk.Stack {
+    constructor(scope, id, props = {}) {
+        super(scope, id, props);
+        new s3.Bucket(this, 'MyBucket', {bucketName: 'my-bucket'})
     }
+}
 
-    VersioningConfiguration = {
-      "Status": "Enabled",
-    }
+const app = new cdk.App();
+const stack = new Stack(app, 'Stack');
+
+cfnsane.attach(stack);
 ```
 
-That's it. Now any bucket you define in your templates will have these settings by default. This example overloads the Troposphere Bucket resource. This is the recommended way to extend a vanilla resource with no prerequisites. You could also have extended the `cfnsane.s3.Bucket` resource instead to build on top of the pre-existing defaults defined by this package.
+Now use the CDK like normal. Running `cdk synth` from the example above will create a stack with a bucket and explicitly set block public access configuration for you.
