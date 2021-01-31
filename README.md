@@ -45,10 +45,18 @@ Application teams want to deploy a bucket into the cloud as fast as possible. In
 
 ## Quick Start
 
-Install CFNSane using pip from PyPi
+Install CFNSane using npm
 
 ```bash
 npm install -g cfnsane
+```
+
+You can also use a cnfsane in a docker image.
+
+```bash
+docker run -it --rm -v ${PWD}:/app mneil/cfnsane
+# or from github
+docker run -it --rm -v ${PWD}:/app docker.pkg.github.com/mneil/cfnsane/cfnsane
 ```
 
 Process an existing template (YAML or JSON)
