@@ -11,12 +11,12 @@ const { Stack, attach } = require('../lib/index');
  */
 function loadConfig(env) {
     let loaded = {}
-    for ([key, value] in Object.entries(env)) {
+    for (const [key, value] of Object.entries(env)) {
         if (!key.startsWith('CFNSANE_')){
             continue;
         };
-        key = key.replace('CFNSANE_', '');
-        loaded[key] = value;
+        normalizedKey = key.replace('CFNSANE_', '');
+        loaded[normalizedKey.toLowerCase()] = value;
     }
     return loaded;
 }

@@ -1,6 +1,6 @@
 {
   "name": "cfnsane",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Supercharge your cloudformation with sane, explicit defaults for resources.",
   "main": "lib/index.js",
   "bin": {
