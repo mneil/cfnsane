@@ -34,35 +34,35 @@ configure your Infrastructure as Code (IaC). It is the defacto way to create
 and lifecycle resources on Amazon Web Services (AWS). Writing Cloudformation often
 means writing tons of repetitive YAML or JSON.
 
-To solve this problem DevOps teams turn to more declaritive solutions like the
+To solve this problem DevOps teams turn to solutions like the
 [Cloud Developer Kit (CDK)](https://aws.amazon.com/cdk/), [Terraform](https://www.terraform.io/),
 [Pulumi](https://www.pulumi.com/), [Troposphere](https://github.com/cloudtools/troposphere),
 or other tool(s).
 
-Software engineers want flexibility in their tooling. CFNSane works with existing solutions and processes to supercharge your IaC by pre or post processing the template and automatically configuring default values. Create your own defaults or use community provided learned best practices.
+CFNSane works with existing solutions and processes to supercharge your IaC by pre or post processing the template and automatically configuring default values. Create your own defaults or use community provided sane defaults.
 
-Application teams want to deploy a bucket into the cloud as fast as possible. Infrastructure teams want to provide templates and patterns for best-practices within an organization. Security teams want to ensure that certain preventative measures are taken on resources. CFNSane helps each of these teams.
+Application teams want to deploy their product into the cloud as fast as possible. Infrastructure teams want to provide templates and patterns for best-practices within an organization. Security teams want to ensure that certain preventative measures are taken on resources. CFNSane addresses each of these problems.
 
 ## Quick Start
 
 Install CFNSane using npm
 
 ```bash
-npm install -g cfnsane
-```
-
-You can also use a cnfsane in a docker image.
-
-```bash
-docker run -it --rm -v ${PWD}:/app mneil/cfnsane
-# or from github
-docker run -it --rm -v ${PWD}:/app docker.pkg.github.com/mneil/cfnsane/cfnsane
+npm install cfnsane
 ```
 
 Process an existing template (YAML or JSON)
 
 ```bash
-cfnsane template.yml -o out.yml
+npx cfnsane template.yml -o out.yml
+```
+
+You can also use a cnfsane in a docker image.
+
+```bash
+docker run -it --rm -v ${PWD}:/app mneil/cfnsane template.yml -o out.yml
+# or from github
+docker run -it --rm -v ${PWD}:/app docker.pkg.github.com/mneil/cfnsane/cfnsane template.yml -o out.yml
 ```
 
 See available commands by running `cfnsane --help` or simply `cfnsane`.
@@ -77,7 +77,7 @@ const cdk = require('@aws-cdk/core');
 const s3 = require('@aws-cdk/aws-s3');
 
 /**
- * Stack ingests a template from disk anc creates
+ * Stack ingests a template from disk and creates
  * a CDK Stack
  */
 class Stack extends cdk.Stack {
