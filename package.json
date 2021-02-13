@@ -1,0 +1,43 @@
+{
+  "name": "cfnsane",
+  "version": "0.1.0",
+  "description": "Supercharge your cloudformation with sane, explicit defaults for resources.",
+  "main": "lib/index.js",
+  "bin": {
+    "app": "bin/cli.js"
+  },
+  "scripts": {
+    "build": "echo \"The build step is not required when using JavaScript!\" && exit 0",
+    "cdk": "cdk",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mneil/cfnsane.git"
+  },
+  "keywords": [
+    "cdk",
+    "cfn",
+    "cloudformation",
+    "aws",
+    "iac"
+  ],
+  "author": "Michael Neil",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mneil/cfnsane/issues"
+  },
+  "homepage": "https://github.com/mneil/cfnsane#readme",
+  "devDependencies": {
+    "@aws-cdk/assert": "1.86.0",
+    "jest": "^26.4.2"
+  },
+  "dependencies": {
+    "@aws-cdk/cloudformation-include": "^1.86.0",
+    "@aws-cdk/core": "1.86.0",
+    "aws-cdk": "^1.86.0",
+    "colors": "^1.4.0",
+    "commander": "^7.0.0",
+    "debug": "^4.3.1"
+  }
+}
