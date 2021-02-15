@@ -62,7 +62,7 @@ You can also use a cnfsane in a docker image.
 ```bash
 docker run -it --rm -v ${PWD}:/app mneil/cfnsane template.yml -o out.yml
 # or from github
-docker run -it --rm -v ${PWD}:/app docker.pkg.github.com/mneil/cfnsane/cfnsane template.yml -o out.yml
+docker run -it --rm -v ${PWD}:/app ghcr.io/mneil/cfnsane template.yml -o out.yml
 ```
 
 See available commands by running `cfnsane --help` or simply `cfnsane`.
